@@ -8,8 +8,8 @@ def parse_excel_data(directory, sheet_name):
     ds_df = ds.parse(sheet_name)
     return ds_df
 
-def parse_csv_data(directory):
-    df = pd.read_csv(directory)
+def parse_csv_data(directory, encoding):
+    df = pd.read_csv(directory, encoding = encoding)
     return df
 
 def extract_column_names(df):
@@ -40,6 +40,21 @@ def build_dic(df, names):
     for name in names:
         dic_object[name] = list(df.loc[:, name])
     return dic_object
+
+def build_row_dic_list(df, names):
+    rows_dic_list = []
+    for index, row in df.iterrows():
+        row_dic = {}
+        for e, name in zip(list(row), names):
+            row_dic[name] = e
+        rows_dic_list.append(row_dic)
+    return rows_dic_list
+
+def convert_dic_list_to_dic(dic_list, key):
+    return_dic = {}
+    for e in dic_list:
+        return_dic[e[key]] = e
+    return return_dic
 
 #parameters: dataframe, countries list, years list, and dataset's name
 def convert_df2json(df, countries, years, ds_name):
