@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+data/
+hw5_data/
+.ipynb_checkpoints/
