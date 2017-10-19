@@ -12,6 +12,12 @@ def parse_csv_data(directory, encoding):
     df = pd.read_csv(directory, encoding = encoding)
     return df
 
+# def parse_arff_data(directory):
+#     dataset = arff.load(open(directory, 'rb'))
+#     data = np.array(dataset['data'])
+#     df = pd.DataFrame(data)
+    return df
+
 def extract_column_names(df):
 	return list(df)
 
